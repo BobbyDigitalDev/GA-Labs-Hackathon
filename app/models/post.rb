@@ -16,4 +16,12 @@ class Post < ActiveRecord::Base
     
   end
 
+  def new
+    @post  = Post.new
+    render :new
+  end
+
+  def create
+  end
+
 end
