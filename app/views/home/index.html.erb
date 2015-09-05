@@ -1,4 +1,57 @@
- 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trekabilly</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- Google Map -->
+<!--   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %> -->
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+</head>
+
+<body> 
+
+<!-- Header
+=================== -->
+<header class="row">
+    <!-- logo -->
+  <%= link_to image_tag('logo.png', class:'logo col s12 m5 l3'), root_path %> 
+  <nav class="white">
+    <!-- search -->
+    <div class="nav-wrapper col s12 m5 l5 offset-l4" style="height: 120%;">
+      <ul class="right">
+      
+        <li style="height:64px;" class="no-hover">
+
+        <!-- Devise -->
+          <div class="col s12 m12 l12 navbar-text pull-right">
+            <% if user_signed_in? %>
+              <a class="dropdown-button deep-purple-text text-darken-2" href="#" data-hover="true" data-activates="dropdown"><strong>Hi <%= current_user.first_name.capitalize %></strong>!</a>
+              <ul id="dropdown" class="dropdown-content">
+                <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+              </ul>
+            <% else %>
+              <div class="sign-up-tab">
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link btn-flat transparent modal-trigger', 'data-target' => '#modal-signup'  %> |
+                <%= link_to "Login", new_user_session_path, :class => 'navbar-link btn-flat transparent modal-trigger', 'data-target' => '#modal-login'  %>
+              </div>
+            <% end %>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
 <div class=""><%= image_tag("heroshot-xl.jpg", class:'col l12 responsive-img hero', :alt => "Trekabilly")%></div>
 
@@ -65,4 +118,5 @@
   </div>
 </div>
 
-<!-- </div>
+</body>
+</html>
